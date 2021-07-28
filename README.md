@@ -1,4 +1,4 @@
-# Utility to rip CDs to both FLAC and 320 MP3s
+# Utility to rip CDs to both FLAC and 319 MP3s
 
 ### Requirements:
 abcde 
@@ -13,5 +13,10 @@ flac
 ### Use
 
 cd to target directory and run script - *Ensure CD is in the drive*
+
+
+
+### TODO:
+Error handling
 
 
