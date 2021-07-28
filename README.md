@@ -1,4 +1,4 @@
-# Utility to rip CDs to both FLAC and 319 MP3s
+# Utility to rip CDs to both FLAC and 320 MP3s
 
 ### Requirements:
 abcde 
