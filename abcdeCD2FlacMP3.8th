@@ -1,34 +1,33 @@
 #! /usr/bin/env 8th
 \ vim: ft=8th :
--1 var, retcode
+-1 var, returncode
 
 
 \ The results from the command:
 "NOTHING" var, results
 
-\ This gets called-back when the external command is finished.  
-: didshell
+\ Callback when the external command is finished.  
+: shell_callback
   \ save the returned results
   results !
-  retcode !
-	\ Let the main thread continue
+  returncode !
+  results @ . cr
+	\ Print the CDDB results and let the main thread continue
 	t:main t:notify ;
 
 : app:main
 	
 		"About to launch command...\n"  .
 
-		\ Launch command:
-    "abcde -o 'flac:-8,mp3:-b 320' -G" ' didshell sh$
+		\ Launch the shell command:
+    "abcde -o 'flac:-8,mp3:-b 320' -G" ' shell_callback sh$
 		
-		\ sh$ returns immediately, its results are given to the callback ("didshell"
-		\ in this case).  So we say we've launched and are waiting for results
-		"Finished launching, waiting for results\n" .
+		\ sh$ returns immediately and its results and returncode are given to the callback 
+		"Awaiting results\n" .
 
-	\ wait (forever) until the cmd finishes...
+	\ wait until the command finishes
 	-1 sleep
 
-  "Got results:" . cr
-  "retcode: " . retcode @ . cr
-  results @ . cr
+  "Results:" . cr
+  "return code: " . returncode @ . cr
 	bye ;
